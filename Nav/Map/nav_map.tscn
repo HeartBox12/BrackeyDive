@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqq27f5n26iho"]
+
+[ext_resource type="PackedScene" uid="uid://co82sa82t5v6" path="res://Nav/Player/player.tscn" id="1_53bjd"]
+[ext_resource type="Script" path="res://Nav/Map/map.gd" id="1_akgyx"]
+[ext_resource type="Texture2D" uid="uid://xd8431deiagd" path="res://test/death_zone.png" id="2_kgh1a"]
+[ext_resource type="SpriteFrames" uid="uid://bcyvvtdn7iqey" path="res://test/hazBar.tres" id="3_3yfc5"]
+[ext_resource type="Texture2D" uid="uid://36yq06jhncch" path="res://test/warn_zone.png" id="3_11n64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n33ak"]
+size = Vector2(50, 1016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d53k"]
+size = Vector2(50, 1016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xpnm"]
+size = Vector2(100, 1016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2fhc"]
+size = Vector2(100, 1016)
+
+[node name="Nav Map" type="Node2D"]
+script = ExtResource("1_akgyx")
+speedLimit = 30.0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 608.0
+offset_bottom = 1048.0
+
+[node name="LeftDeathZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDeathZone"]
+position = Vector2(57, 540)
+shape = SubResource("RectangleShape2D_n33ak")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftDeathZone"]
+position = Vector2(57, 540)
+texture = ExtResource("2_kgh1a")
+
+[node name="RightDeathZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDeathZone"]
+position = Vector2(583, 540)
+shape = SubResource("RectangleShape2D_4d53k")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightDeathZone"]
+position = Vector2(583, 540)
+texture = ExtResource("2_kgh1a")
+
+[node name="LeftWarnZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWarnZone"]
+position = Vector2(132, 540)
+shape = SubResource("RectangleShape2D_7xpnm")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftWarnZone"]
+position = Vector2(132, 540)
+texture = ExtResource("3_11n64")
+
+[node name="RightWarnZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWarnZone"]
+position = Vector2(508, 540)
+shape = SubResource("RectangleShape2D_i2fhc")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightWarnZone"]
+position = Vector2(508, 540)
+texture = ExtResource("3_11n64")
+
+[node name="NavPlayer" parent="." instance=ExtResource("1_53bjd")]
+position = Vector2(320, 100)
+collision_layer = 2
+collision_mask = 2
+
+[node name="HazTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="HazBar" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(320, 360)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_3yfc5")
+
+[node name="GoalZone" type="Area2D" parent="."]
+
+[connection signal="body_shape_entered" from="LeftDeathZone" to="." method="_on_death_zone_entered"]
+[connection signal="body_shape_entered" from="RightDeathZone" to="." method="_on_death_zone_entered"]
+[connection signal="body_shape_entered" from="LeftWarnZone" to="." method="_on_warn_zone_entered"]
+[connection signal="body_shape_exited" from="LeftWarnZone" to="." method="_on_warn_zone_exited"]
+[connection signal="body_shape_entered" from="RightWarnZone" to="." method="_on_warn_zone_entered"]
+[connection signal="body_shape_exited" from="RightWarnZone" to="." method="_on_warn_zone_exited"]

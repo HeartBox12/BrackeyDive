@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci6gd70h1oxed"]
+
+[ext_resource type="Texture2D" uid="uid://b73256t735w3g" path="res://test/window.png" id="1_h6guj"]
+[ext_resource type="Script" path="res://Click/window.gd" id="2_v5cbm"]
+[ext_resource type="PackedScene" uid="uid://c3o5vwndph3s5" path="res://Click/timer_component.tscn" id="3_x3v30"]
+
+[node name="window" type="TextureRect"]
+texture = ExtResource("1_h6guj")
+script = ExtResource("2_v5cbm")
+
+[node name="TimerComponent" parent="." instance=ExtResource("3_x3v30")]
+layout_mode = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 48.0
+offset_right = 363.0
+offset_bottom = 176.0
+
+[connection signal="pressed" from="Button" to="." method="satisfied"]

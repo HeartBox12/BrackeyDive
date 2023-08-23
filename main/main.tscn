@@ -1,0 +1,236 @@
+[gd_scene load_steps=20 format=3 uid="uid://68t31n43owot"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_180gd"]
+[ext_resource type="PackedScene" uid="uid://bqq27f5n26iho" path="res://Nav/Map/nav_map.tscn" id="1_k02dr"]
+[ext_resource type="PackedScene" uid="uid://b6fds5sexg0wh" path="res://Tilt/tilt_map.tscn" id="2_aqruc"]
+[ext_resource type="Texture2D" uid="uid://djq8ajfjtf7vm" path="res://test/death.png" id="4_a77ja"]
+[ext_resource type="PackedScene" uid="uid://bis56r5mv1i41" path="res://Click/click_map.tscn" id="4_bysr0"]
+[ext_resource type="Texture2D" uid="uid://cy0rsq653q0wx" path="res://test/prompt.png" id="6_x1unq"]
+
+[sub_resource type="Animation" id="Animation_tth0o"]
+resource_name = "death"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TESTDeathSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_close"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dgpmj"]
+resource_name = "opening"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tiltPrompt:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("navPrompt:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 9, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("clickPrompt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 18, 21.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3, 12.1, 21.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spawnTilt"
+}, {
+"args": [],
+"method": &"spawnNav"
+}, {
+"args": [],
+"method": &"spawnClick"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_h54hr"]
+resource_name = "win"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TESTWinSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_close"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j13m1"]
+_data = {
+"death": SubResource("Animation_tth0o"),
+"opening": SubResource("Animation_dgpmj"),
+"win": SubResource("Animation_h54hr")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss3de"]
+atlas = ExtResource("6_x1unq")
+region = Rect2(0, 0, 576, 1016)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h01bj"]
+atlas = ExtResource("6_x1unq")
+region = Rect2(576, 0, 576, 1016)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c65mw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss3de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h01bj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkfvb"]
+atlas = ExtResource("6_x1unq")
+region = Rect2(0, 0, 576, 1016)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmhi5"]
+atlas = ExtResource("6_x1unq")
+region = Rect2(576, 0, 576, 1016)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4toe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkfvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmhi5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn12x"]
+atlas = ExtResource("6_x1unq")
+region = Rect2(0, 0, 576, 1016)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5tpw"]
+atlas = ExtResource("6_x1unq")
+region = Rect2(576, 0, 576, 1016)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74bmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn12x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5tpw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_180gd")
+navFile = ExtResource("1_k02dr")
+tiltFile = ExtResource("2_aqruc")
+clickFile = ExtResource("4_bysr0")
+tiltMapPos = Vector2(640, 0)
+clickMapPos = Vector2(1280, 0)
+
+[node name="TESTWinSprite" type="Sprite2D" parent="."]
+visible = false
+
+[node name="TESTDeathSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("4_a77ja")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j13m1")
+}
+
+[node name="tiltPrompt" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_c65mw")
+
+[node name="navPrompt" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(320, 540)
+sprite_frames = SubResource("SpriteFrames_h4toe")
+
+[node name="clickPrompt" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1600, 540)
+sprite_frames = SubResource("SpriteFrames_74bmq")

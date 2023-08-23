@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6fds5sexg0wh"]
+
+[ext_resource type="Script" path="res://Tilt/tilt_map.gd" id="1_qapj1"]
+[ext_resource type="Texture2D" uid="uid://rujve1fyqkme" path="res://icon.svg" id="2_uf8pa"]
+[ext_resource type="SpriteFrames" uid="uid://bcyvvtdn7iqey" path="res://test/hazBar.tres" id="3_f1ao3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0feg"]
+atlas = ExtResource("2_uf8pa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4mys"]
+atlas = ExtResource("2_uf8pa")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_580ih"]
+atlas = ExtResource("2_uf8pa")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w4fr"]
+atlas = ExtResource("2_uf8pa")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkmaj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0feg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4mys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_580ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w4fr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="tilt_map" type="Node2D"]
+script = ExtResource("1_qapj1")
+bumpMagnitude = 5
+playerTiltFactor = 2.0
+indTiltFactor = 10.0
+
+[node name="TiltPlayer" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 540)
+sprite_frames = SubResource("SpriteFrames_fkmaj")
+frame = 2
+frame_progress = 0.201413
+
+[node name="TiltIndDefault" type="Marker2D" parent="."]
+position = Vector2(320, 810)
+
+[node name="TiltInd" type="Sprite2D" parent="."]
+position = Vector2(320, 810)
+texture = ExtResource("2_uf8pa")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 608.0
+offset_bottom = 1048.0
+
+[node name="bumpBuffer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="HazBar" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(320, 360)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_f1ao3")
+
+[node name="HazTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="bumpBuffer" to="." method="_timed_bump"]
+[connection signal="timeout" from="HazTimer" to="." method="_on_haz_timer_timeout"]
