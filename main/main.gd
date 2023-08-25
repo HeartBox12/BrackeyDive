@@ -21,6 +21,7 @@ func die(): #Start of death sequence
 	$AnimationPlayer.play("death")
 
 func _close():
+	Singleton.FMODInstance.release()
 	get_tree().quit() #close the game.
 
 func win():

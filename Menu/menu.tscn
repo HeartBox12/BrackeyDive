@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddavmntgo5noo"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_1s70s"]
+[ext_resource type="PackedScene" uid="uid://68t31n43owot" path="res://main/main.tscn" id="2_j12u6"]
+[ext_resource type="FontFile" uid="uid://c02g8jny4ufoi" path="res://Menu/Patriot-Bold.otf" id="3_vwdmi"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_pf4gm"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_1cb24"]
+events = [SubResource("InputEventKey_pf4gm")]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1s70s")
+dest = ExtResource("2_j12u6")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 540.0
+offset_right = 1405.0
+offset_bottom = 788.0
+theme_override_fonts/font = ExtResource("3_vwdmi")
+theme_override_font_sizes/font_size = 100
+shortcut = SubResource("Shortcut_1cb24")
+text = "Click to go for
+Rock Bottom"
+
+[node name="volSlider" type="HSlider" parent="."]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 333.0
+max_value = 1.0
+step = 0.001
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="value_changed" from="volSlider" to="." method="_on_volume_changed"]

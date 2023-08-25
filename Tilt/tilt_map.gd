@@ -31,11 +31,13 @@ func _process(delta): #Determine and apply input to tiltVel
 	
 	#If they are, do things.
 	if inHaz:
+		FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 1, false)
 		#Measure and display level of hazard. Max frame is 62 and min is zero.
 		$HazBar.frame = int($HazTimer.time_left * 62 / 3) #CHANGE DIVISOR IF WAIT TIME IS CHANGED
 		
 		#Eval if player is back in safety zone
 		if (abs(tilt) < tiltThresh):
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 0, false)
 			$HazBar.visible = false
 			inHaz = false
 			$HazTimer.stop()

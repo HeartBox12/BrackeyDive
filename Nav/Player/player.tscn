@@ -8,6 +8,7 @@ size = Vector2(64, 64)
 
 [node name="NavPlayer" type="CharacterBody2D"]
 script = ExtResource("1_5x3rk")
+bumpSeverity = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kfrek")
@@ -15,3 +16,9 @@ shape = SubResource("RectangleShape2D_kfrek")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_gh6ac")
+
+[node name="bumpTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="bumpTimer" to="." method="_bump"]

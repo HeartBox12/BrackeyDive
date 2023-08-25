@@ -1,0 +1,18 @@
+[gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://8wj2mxvqwiba"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_see1v"]
+data1 = 1379185791
+data2 = 1525783041
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_vyeki"]
+name = "Nav Music"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_see1v")
+maximum = 1.0
+flags = 4
+guid = "{d07f8480-5e7e-483a-8e73-89c4fadab272}"
+
+[resource]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_vyeki")
+path = "parameter:/Nav Music"
+guid = "{d07f8480-5e7e-483a-8e73-89c4fadab272}"
+name = "Nav Music"

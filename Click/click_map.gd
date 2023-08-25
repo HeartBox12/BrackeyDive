@@ -38,4 +38,13 @@ func _on_spawn_timeout():
 
 func _resolve_complete(index):
 	windowArray[index] = null
+	eval_warn() #check and see if that was the last one in haz.
 	#mark slot as open
+
+func eval_warn(): #Play or stop the warning track for the Click map. Includes decision structure.
+	for i in 3:
+		if windowArray[i] != null && windowArray[i].get_node("TimerComponent").inHaz == true:
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 1, false)
+			return #Found 1 in haz, exit function.
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 0, false)
+	#found none in haz.
