@@ -53,6 +53,5 @@ texture_progress = ExtResource("2_564it")
 
 [node name="spawnTime" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [connection signal="timeout" from="spawnTime" to="." method="_on_spawn_timeout"]

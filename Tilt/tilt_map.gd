@@ -6,13 +6,18 @@ var tiltVel:float = 0 #The angle's rate of motion
 @export var bumpMagnitude:int
 @export var playerTiltFactor:float #Inverse severity of player tilt
 @export var indTiltFactor:float #inverse severity of indicator tilt
+@export var parallax:int
 
 var inHaz = false #hazard, not haz cheeseburger.
 var tiltThresh = 200 #The amount of tilt that is hazardous.
 
-signal death
+var paused = true
 
 func _process(delta): #Determine and apply input to tiltVel
+	$ParallaxBackground.offset.y += parallax * delta
+	
+	if paused: return
+	
 	if (Input.is_action_pressed("tilt_left")):
 		tiltVel -= 1
 	if (Input.is_action_pressed("tilt_right")):
@@ -51,3 +56,8 @@ func _timed_bump(): #bump the tilt
 
 func _on_haz_timer_timeout():
 	Singleton.death.emit()
+
+func begin():
+	visible = true
+	$bumpBuffer.start()
+	paused = false

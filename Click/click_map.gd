@@ -48,3 +48,7 @@ func eval_warn(): #Play or stop the warning track for the Click map. Includes de
 			return #Found 1 in haz, exit function.
 	FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 0, false)
 	#found none in haz.
+
+func begin():
+	$spawnTime.start()
+	visible = true

@@ -19,6 +19,5 @@ texture = ExtResource("2_gh6ac")
 
 [node name="bumpTimer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
 
 [connection signal="timeout" from="bumpTimer" to="." method="_bump"]

@@ -26,18 +26,3 @@ func _close():
 
 func win():
 	$AnimationPlayer.play("win")
-
-func spawnTilt():
-	var tiltScene:Node = tiltFile.instantiate()
-	add_child(tiltScene)
-	tiltScene.position = tiltMapPos
-
-func spawnNav():
-	var navScene:Node = navFile.instantiate()
-	add_child(navScene)
-	navScene.position = navMapPos
-
-func spawnClick():
-	var clickScene:Node = clickFile.instantiate()
-	add_child(clickScene)
-	clickScene.position = clickMapPos

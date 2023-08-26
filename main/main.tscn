@@ -83,7 +83,7 @@ tracks/2/path = NodePath("clickPrompt:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 18, 21.5),
+"times": PackedFloat32Array(0, 18, 21),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -91,21 +91,43 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".")
+tracks/3/path = NodePath("tilt_map")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(3, 12.1, 21.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"spawnTilt"
-}, {
+"method": &"begin"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("nav_map")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"values": [{
 "args": [],
-"method": &"spawnNav"
-}, {
+"method": &"begin"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("click_map")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(21),
+"transitions": PackedFloat32Array(1),
+"values": [{
 "args": [],
-"method": &"spawnClick"
+"method": &"begin"
 }]
 }
 
@@ -224,6 +246,7 @@ clickMapPos = Vector2(1280, 0)
 visible = false
 
 [node name="TESTDeathSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(960, 540)
 texture = ExtResource("4_a77ja")
 
@@ -233,7 +256,6 @@ libraries = {
 }
 
 [node name="tiltPrompt" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(960, 540)
 sprite_frames = SubResource("SpriteFrames_c65mw")
 
@@ -246,3 +268,14 @@ sprite_frames = SubResource("SpriteFrames_h4toe")
 visible = false
 position = Vector2(1600, 540)
 sprite_frames = SubResource("SpriteFrames_74bmq")
+
+[node name="nav_map" parent="." instance=ExtResource("1_k02dr")]
+visible = false
+
+[node name="tilt_map" parent="." instance=ExtResource("2_aqruc")]
+visible = false
+position = Vector2(640, 0)
+
+[node name="click_map" parent="." instance=ExtResource("4_bysr0")]
+visible = false
+position = Vector2(1280, 0)

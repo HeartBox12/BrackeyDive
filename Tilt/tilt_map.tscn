@@ -67,7 +67,6 @@ offset_bottom = 1048.0
 
 [node name="bumpBuffer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="HazBar" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -78,6 +77,10 @@ sprite_frames = ExtResource("3_f1ao3")
 [node name="HazTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [connection signal="timeout" from="bumpBuffer" to="." method="_timed_bump"]
 [connection signal="timeout" from="HazTimer" to="." method="_on_haz_timer_timeout"]

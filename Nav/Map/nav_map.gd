@@ -5,7 +5,11 @@ var overSpeed = false
 @export var speedLimit:float
 @export var warnSpeed:float
 
+var paused = true
+
 func _process(_delta):
+	if paused: return
+	
 	#Determine if the player is outside safety zone
 	if (!overSpeed && $NavPlayer.velocity.length() > warnSpeed): #add warning
 		$TESTSpeedWarn.visible = true
@@ -40,3 +44,8 @@ func _on_death_zone_entered(body, shape, index, local): #The player has left the
 
 func _on_goal(body_rid, body, body_shape_index, local_shape_index):
 	Singleton.win.emit()
+	
+func begin():
+	visible = true
+	$NavPlayer.paused = false
+	$NavPlayer/bumpTimer.start()
