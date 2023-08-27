@@ -5,7 +5,7 @@ const THRUST = 2
 var input:Vector2 = Vector2(0, 0)
 @export var bumpSeverity:int
 
-var paused = true #set to false when this minigame begins
+var paused = false #set to false when this minigame begins
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

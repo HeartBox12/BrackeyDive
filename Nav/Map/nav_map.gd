@@ -10,9 +10,10 @@ var paused = true
 func _process(_delta):
 	if paused: return
 	
+	$needle.rotation_degrees = $NavPlayer.velocity.length() / speedLimit * 360
+	
 	#Determine if the player is outside safety zone
 	if (!overSpeed && $NavPlayer.velocity.length() > warnSpeed): #add warning
-		$TESTSpeedWarn.visible = true
 		overSpeed = true
 		FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 1, false)
 	
@@ -24,7 +25,6 @@ func _process(_delta):
 		
 		#Eval if player is back in safety zone
 		if ($NavPlayer.velocity.length() < warnSpeed):
-			$TESTSpeedWarn.visible = false
 			overSpeed = false
 			if !inHaz:
 				FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 0, false)

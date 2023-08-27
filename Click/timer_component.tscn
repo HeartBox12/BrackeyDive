@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3o5vwndph3s5"]
+[gd_scene load_steps=5 format=3 uid="uid://c3o5vwndph3s5"]
 
-[ext_resource type="Texture2D" uid="uid://rujve1fyqkme" path="res://icon.svg" id="1_03o1y"]
+[ext_resource type="Texture2D" uid="uid://cmgqy7tmhoa2u" path="res://Click/7.3_Window_Base.png" id="1_4uw3j"]
+[ext_resource type="Texture2D" uid="uid://cx1xknv52my5y" path="res://Click/7.1_Window_Frame.png" id="2_4aohf"]
 [ext_resource type="Script" path="res://TimerComponent.gd" id="2_rp31j"]
+[ext_resource type="Texture2D" uid="uid://c8jlkj74en4me" path="res://Click/7.2_Timer_Bar.png" id="3_wni2i"]
 
 [node name="TimerComponent" type="TextureProgressBar"]
 max_value = 15.0
 step = 0.0
 value = 15.0
-fill_mode = 1
-texture_progress = ExtResource("1_03o1y")
+texture_under = ExtResource("1_4uw3j")
+texture_over = ExtResource("2_4aohf")
+texture_progress = ExtResource("3_wni2i")
 script = ExtResource("2_rp31j")
 
 [node name="Timer" type="Timer" parent="."]

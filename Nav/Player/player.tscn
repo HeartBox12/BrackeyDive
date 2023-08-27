@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://co82sa82t5v6"]
 
 [ext_resource type="Script" path="res://Nav/Player/player.gd" id="1_5x3rk"]
-[ext_resource type="Texture2D" uid="uid://rujve1fyqkme" path="res://icon.svg" id="2_gh6ac"]
+[ext_resource type="Texture2D" uid="uid://be27d5pa3bpfq" path="res://Nav/5._Drone_Icon.png" id="2_thbsk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfrek"]
-size = Vector2(64, 64)
+size = Vector2(44, 30)
 
 [node name="NavPlayer" type="CharacterBody2D"]
 script = ExtResource("1_5x3rk")
@@ -15,7 +15,7 @@ shape = SubResource("RectangleShape2D_kfrek")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_gh6ac")
+texture = ExtResource("2_thbsk")
 
 [node name="bumpTimer" type="Timer" parent="."]
 wait_time = 3.0

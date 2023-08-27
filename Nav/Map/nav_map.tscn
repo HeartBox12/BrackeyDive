@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqq27f5n26iho"]
+[gd_scene load_steps=12 format=3 uid="uid://bqq27f5n26iho"]
 
 [ext_resource type="PackedScene" uid="uid://co82sa82t5v6" path="res://Nav/Player/player.tscn" id="1_53bjd"]
 [ext_resource type="Script" path="res://Nav/Map/nav_map.gd" id="1_hk541"]
-[ext_resource type="Texture2D" uid="uid://bbyvckinayb7i" path="res://test/speed_warn.png" id="2_3xs5c"]
-[ext_resource type="Texture2D" uid="uid://xd8431deiagd" path="res://test/death_zone.png" id="2_kgh1a"]
-[ext_resource type="Texture2D" uid="uid://36yq06jhncch" path="res://test/warn_zone.png" id="3_11n64"]
+[ext_resource type="Texture2D" uid="uid://ppqexh8k2gf6" path="res://Nav/2.1_Meter_Needle.png" id="6_chms1"]
+[ext_resource type="Texture2D" uid="uid://leyux2bqomqk" path="res://Nav/12._Yellow_Zone.png" id="6_lj3hd"]
+[ext_resource type="Texture2D" uid="uid://wnomkje1ixpe" path="res://Nav/2.2_Speedometer.png" id="7_43hdx"]
+[ext_resource type="Texture2D" uid="uid://dnyot8ng0gq47" path="res://Nav/11._Red_Zone.png" id="7_pkx5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n33ak"]
 size = Vector2(50, 1016)
@@ -26,6 +27,15 @@ script = ExtResource("1_hk541")
 speedLimit = 150.0
 warnSpeed = 75.0
 
+[node name="background" type="ColorRect" parent="."]
+z_index = -4
+texture_filter = 1
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 608.0
+offset_bottom = 1048.0
+color = Color(0, 0, 0, 1)
+
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 32.0
 offset_top = 32.0
@@ -41,10 +51,6 @@ monitorable = false
 position = Vector2(57, 540)
 shape = SubResource("RectangleShape2D_n33ak")
 
-[node name="Sprite2D" type="Sprite2D" parent="LeftDeathZone"]
-position = Vector2(57, 540)
-texture = ExtResource("2_kgh1a")
-
 [node name="RightDeathZone" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -53,10 +59,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightDeathZone"]
 position = Vector2(583, 540)
 shape = SubResource("RectangleShape2D_4d53k")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightDeathZone"]
-position = Vector2(583, 540)
-texture = ExtResource("2_kgh1a")
 
 [node name="LeftWarnZone" type="Area2D" parent="."]
 collision_layer = 2
@@ -67,10 +69,6 @@ monitorable = false
 position = Vector2(132, 540)
 shape = SubResource("RectangleShape2D_7xpnm")
 
-[node name="Sprite2D" type="Sprite2D" parent="LeftWarnZone"]
-position = Vector2(132, 540)
-texture = ExtResource("3_11n64")
-
 [node name="RightWarnZone" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -79,10 +77,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWarnZone"]
 position = Vector2(508, 540)
 shape = SubResource("RectangleShape2D_i2fhc")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightWarnZone"]
-position = Vector2(508, 540)
-texture = ExtResource("3_11n64")
 
 [node name="GoalZone" type="Area2D" parent="."]
 collision_layer = 2
@@ -97,10 +91,24 @@ position = Vector2(320, 100)
 collision_layer = 2
 collision_mask = 2
 
-[node name="TESTSpeedWarn" type="Sprite2D" parent="."]
-visible = false
+[node name="needle" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(326, 540)
+texture = ExtResource("6_chms1")
+offset = Vector2(-28, 13)
+
+[node name="speedometer" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(326, 540)
+texture = ExtResource("7_43hdx")
+
+[node name="danger_zone" type="Sprite2D" parent="."]
 position = Vector2(320, 540)
-texture = ExtResource("2_3xs5c")
+texture = ExtResource("6_lj3hd")
+
+[node name="death_zone" type="Sprite2D" parent="."]
+position = Vector2(320, 540)
+texture = ExtResource("7_pkx5k")
 
 [connection signal="body_shape_entered" from="LeftDeathZone" to="." method="_on_death_zone_entered"]
 [connection signal="body_shape_entered" from="RightDeathZone" to="." method="_on_death_zone_entered"]

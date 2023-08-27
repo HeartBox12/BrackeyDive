@@ -1,11 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://68t31n43owot"]
+[gd_scene load_steps=14 format=3 uid="uid://68t31n43owot"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_180gd"]
 [ext_resource type="PackedScene" uid="uid://bqq27f5n26iho" path="res://Nav/Map/nav_map.tscn" id="1_k02dr"]
 [ext_resource type="PackedScene" uid="uid://b6fds5sexg0wh" path="res://Tilt/tilt_map.tscn" id="2_aqruc"]
 [ext_resource type="Texture2D" uid="uid://djq8ajfjtf7vm" path="res://test/death.png" id="4_a77ja"]
 [ext_resource type="PackedScene" uid="uid://bis56r5mv1i41" path="res://Click/click_map.tscn" id="4_bysr0"]
-[ext_resource type="Texture2D" uid="uid://cy0rsq653q0wx" path="res://test/prompt.png" id="6_x1unq"]
+[ext_resource type="Texture2D" uid="uid://dumeeoufumlgg" path="res://main/1.2_Tutorial_Tilt.png" id="6_jqyju"]
+[ext_resource type="Texture2D" uid="uid://db7a4mnkulyaq" path="res://main/1.3_Tutorial_Nav.png" id="7_lmymm"]
+[ext_resource type="Texture2D" uid="uid://c3ohs0s6xjix2" path="res://main/frames.png" id="7_vss7g"]
+[ext_resource type="Texture2D" uid="uid://d02kt3anq2hcs" path="res://main/1.1_Tutorial_Click.png" id="8_f5sck"]
 
 [sub_resource type="Animation" id="Animation_tth0o"]
 resource_name = "death"
@@ -168,72 +171,6 @@ _data = {
 "win": SubResource("Animation_h54hr")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ss3de"]
-atlas = ExtResource("6_x1unq")
-region = Rect2(0, 0, 576, 1016)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h01bj"]
-atlas = ExtResource("6_x1unq")
-region = Rect2(576, 0, 576, 1016)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c65mw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ss3de")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h01bj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qkfvb"]
-atlas = ExtResource("6_x1unq")
-region = Rect2(0, 0, 576, 1016)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mmhi5"]
-atlas = ExtResource("6_x1unq")
-region = Rect2(576, 0, 576, 1016)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_h4toe"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qkfvb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mmhi5")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xn12x"]
-atlas = ExtResource("6_x1unq")
-region = Rect2(0, 0, 576, 1016)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5tpw"]
-atlas = ExtResource("6_x1unq")
-region = Rect2(576, 0, 576, 1016)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_74bmq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xn12x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m5tpw")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="main" type="Node2D"]
 script = ExtResource("1_180gd")
 navFile = ExtResource("1_k02dr")
@@ -255,27 +192,34 @@ libraries = {
 "": SubResource("AnimationLibrary_j13m1")
 }
 
-[node name="tiltPrompt" type="AnimatedSprite2D" parent="."]
+[node name="tiltPrompt" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(960, 540)
-sprite_frames = SubResource("SpriteFrames_c65mw")
+texture = ExtResource("6_jqyju")
 
-[node name="navPrompt" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(320, 540)
-sprite_frames = SubResource("SpriteFrames_h4toe")
+[node name="navPrompt" type="Sprite2D" parent="."]
+position = Vector2(344, 545)
+texture = ExtResource("7_lmymm")
 
-[node name="clickPrompt" type="AnimatedSprite2D" parent="."]
+[node name="clickPrompt" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1600, 540)
-sprite_frames = SubResource("SpriteFrames_74bmq")
+position = Vector2(1585, 540)
+texture = ExtResource("8_f5sck")
 
 [node name="nav_map" parent="." instance=ExtResource("1_k02dr")]
 visible = false
+position = Vector2(25, 3)
 
 [node name="tilt_map" parent="." instance=ExtResource("2_aqruc")]
 visible = false
-position = Vector2(640, 0)
+z_index = 4
+position = Vector2(645, 4)
 
 [node name="click_map" parent="." instance=ExtResource("4_bysr0")]
 visible = false
-position = Vector2(1280, 0)
+position = Vector2(1265, 3)
+
+[node name="Frames" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(960, 540)
+texture = ExtResource("7_vss7g")
