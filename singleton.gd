@@ -5,5 +5,10 @@ signal win
 var FMODInstance
 
 func _ready():
-	FMODInstance = FMODStudioModule.get_studio_system().get_event_by_id(FMODGuids.Events.MUSIC_MUSIC).create_instance()
+	FMODInstance = RuntimeManager.create_instance_id(FMODGuids.Events.MUSIC_MUSIC)
 	FMODInstance.start() #MOVE
+
+func _unhandled_input(event):
+	if event.is_action_pressed("close game"):
+		FMODInstance.release()
+		get_tree().quit()

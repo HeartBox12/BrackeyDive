@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqq27f5n26iho"]
+[gd_scene load_steps=14 format=3 uid="uid://bqq27f5n26iho"]
 
 [ext_resource type="PackedScene" uid="uid://co82sa82t5v6" path="res://Nav/Player/player.tscn" id="1_53bjd"]
 [ext_resource type="Script" path="res://Nav/Map/nav_map.gd" id="1_hk541"]
 [ext_resource type="Texture2D" uid="uid://ppqexh8k2gf6" path="res://Nav/2.1_Meter_Needle.png" id="6_chms1"]
 [ext_resource type="Texture2D" uid="uid://leyux2bqomqk" path="res://Nav/12._Yellow_Zone.png" id="6_lj3hd"]
 [ext_resource type="Texture2D" uid="uid://wnomkje1ixpe" path="res://Nav/2.2_Speedometer.png" id="7_43hdx"]
+[ext_resource type="Texture2D" uid="uid://eyuax00qn64n" path="res://Nav/13._Landing_Zone.png" id="7_bgju4"]
 [ext_resource type="Texture2D" uid="uid://dnyot8ng0gq47" path="res://Nav/11._Red_Zone.png" id="7_pkx5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n33ak"]
@@ -20,7 +21,10 @@ size = Vector2(100, 1016)
 size = Vector2(100, 1016)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrbqd"]
-size = Vector2(276, 20)
+size = Vector2(92, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5wkc"]
+size = Vector2(476, 41)
 
 [node name="Nav Map" type="Node2D"]
 script = ExtResource("1_hk541")
@@ -83,8 +87,20 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalZone"]
-position = Vector2(320, 1038)
+position = Vector2(320, 1022)
 shape = SubResource("RectangleShape2D_jrbqd")
+
+[node name="TopDeathZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopDeathZone"]
+position = Vector2(320, 10.5)
+shape = SubResource("RectangleShape2D_s5wkc")
+
+[node name="BottomDeathZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomDeathZone"]
+position = Vector2(320, 1069)
+shape = SubResource("RectangleShape2D_s5wkc")
 
 [node name="NavPlayer" parent="." instance=ExtResource("1_53bjd")]
 position = Vector2(320, 100)
@@ -109,6 +125,10 @@ texture = ExtResource("6_lj3hd")
 [node name="death_zone" type="Sprite2D" parent="."]
 position = Vector2(320, 540)
 texture = ExtResource("7_pkx5k")
+
+[node name="goal" type="Sprite2D" parent="."]
+position = Vector2(320, 1022)
+texture = ExtResource("7_bgju4")
 
 [connection signal="body_shape_entered" from="LeftDeathZone" to="." method="_on_death_zone_entered"]
 [connection signal="body_shape_entered" from="RightDeathZone" to="." method="_on_death_zone_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6fds5sexg0wh"]
+[gd_scene load_steps=8 format=3 uid="uid://b6fds5sexg0wh"]
 
 [ext_resource type="Script" path="res://Tilt/tilt_map.gd" id="1_qapj1"]
 [ext_resource type="Texture2D" uid="uid://cdahfiecu8pdq" path="res://Tilt/9._Drone_Itself.png" id="2_lcx7x"]
@@ -6,10 +6,12 @@
 [ext_resource type="SpriteFrames" uid="uid://bcyvvtdn7iqey" path="res://test/hazBar.tres" id="3_f1ao3"]
 [ext_resource type="Texture2D" uid="uid://cjo6oa0jhhslc" path="res://Tilt/4.2_Tilt_Bar.png" id="4_slq33"]
 [ext_resource type="Texture2D" uid="uid://bpn5bhac0px4h" path="res://Tilt/10.5_Clouds_1.png" id="5_ptjey"]
+[ext_resource type="Texture2D" uid="uid://xdadcrl7t8t" path="res://Tilt/10.6_Tilt_Map.png" id="7_2gjdm"]
 
 [node name="tilt_map" type="Node2D"]
 script = ExtResource("1_qapj1")
-bumpMagnitude = 5
+inputMagnitude = 2000
+bumpMagnitude = 50
 playerTiltFactor = 2.0
 indTiltFactor = 10.0
 
@@ -42,6 +44,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="HazBar" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(320, 200)
 sprite_frames = ExtResource("3_f1ao3")
 
@@ -54,6 +57,9 @@ visible = false
 texture = ExtResource("5_ptjey")
 
 [node name="background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(320, 540)
+texture = ExtResource("7_2gjdm")
 
 [connection signal="timeout" from="bumpBuffer" to="." method="_timed_bump"]
 [connection signal="timeout" from="HazTimer" to="." method="_on_haz_timer_timeout"]

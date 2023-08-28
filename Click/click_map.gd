@@ -12,9 +12,8 @@ func _ready():
 	markArray = [$Marker0, $Marker1, $Marker2]
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$SpawnProgBar.value = ($spawnTime.wait_time - $spawnTime.time_left) #indicate how much time is left
+	pass
 
 func _on_spawn_timeout():
 	# Spawn

@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Brackey Dive"
-run/main_scene="res://main/main.tscn"
+run/main_scene="res://Menu/menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -36,7 +37,7 @@ settings/banks_path="res://FMODBanks/Desktop"
 settings/fmod_output_type=0
 settings/fmod_debug_flags=0
 settings/fmod_debug_mode=1
-settings/banks_to_load_at_startup=Array[String](["res://FMODBanks/Master.bank", "res://FMODBanks/Music.bank", "res://FMODBanks/Desktop/Master.strings.bank"])
+settings/banks_to_load_at_startup=Array[String](["res://FMODBanks/Desktop/Master.bank", "res://FMODBanks/Desktop/Music.bank", "res://FMODBanks/Desktop/Master.strings.bank"])
 settings/banks_preload_samples=false
 settings/banks_flags=0
 settings/sample_rate=48000
@@ -84,6 +85,11 @@ tilt_right={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
 ]
 }
+"close game"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -92,3 +98,4 @@ tilt_right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"

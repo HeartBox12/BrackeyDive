@@ -3,6 +3,7 @@ extends Node2D
 var tilt:float = 0 #The actual angle
 var tiltVel:float = 0 #The angle's rate of motion
 
+@export var inputMagnitude:int
 @export var bumpMagnitude:int
 @export var playerTiltFactor:float #Inverse severity of player tilt
 @export var indTiltFactor:float #inverse severity of indicator tilt
@@ -12,7 +13,7 @@ var inHaz = false #hazard, not haz cheeseburger.
 var tiltThresh = 600 #The amount of tilt that is hazardous.
 var tiltMax = 1200 #The maximum amount of tilt
 
-var paused = true
+var paused = false
 
 func _process(delta): #Determine and apply input to tiltVel
 	$ParallaxBackground.offset.y += parallax * delta
@@ -20,11 +21,11 @@ func _process(delta): #Determine and apply input to tiltVel
 	if paused: return
 	
 	if (Input.is_action_pressed("tilt_left")):
-		tiltVel -= 1
+		tiltVel -= inputMagnitude * delta
 	if (Input.is_action_pressed("tilt_right")):
-		tiltVel += 1
+		tiltVel += inputMagnitude * delta
 	
-	tilt += tiltVel
+	tilt += tiltVel * delta
 	
 	if tilt > tiltMax:
 		tilt = tiltMax
@@ -42,11 +43,11 @@ func _process(delta): #Determine and apply input to tiltVel
 		$HazBar.visible = true
 		$HazTimer.start()
 		inHaz = true
+		FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 1, false)
 	
 	#If they are, do things.
 	if inHaz:
-		FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 1, false)
-		#Measure and display level of hazard. Max frame is 62 and min is zero.
+		#Measure and display level of hazard. Max frame is 8 and min is zero.
 		$HazBar.frame = int(($HazTimer.wait_time - $HazTimer.time_left) * 8 / 3) #CHANGE DIVISOR IF WAIT TIME IS CHANGED
 		
 		#Eval if player is back in safety zone

@@ -10,7 +10,7 @@ var paused = true
 func _process(_delta):
 	if paused: return
 	
-	$needle.rotation_degrees = $NavPlayer.velocity.length() / speedLimit * 360
+	$needle.rotation_degrees = ($NavPlayer.velocity.length() / speedLimit) * 240
 	
 	#Determine if the player is outside safety zone
 	if (!overSpeed && $NavPlayer.velocity.length() > warnSpeed): #add warning
@@ -21,7 +21,7 @@ func _process(_delta):
 	if overSpeed:
 		#Measure and display level of hazard. Max frame is 62 and min is zero.
 		if ($NavPlayer.velocity.length() > speedLimit):
-			Singleton.death.emit() #death
+			Singleton.death.emit() #death`s
 		
 		#Eval if player is back in safety zone
 		if ($NavPlayer.velocity.length() < warnSpeed):
@@ -47,5 +47,6 @@ func _on_goal(body_rid, body, body_shape_index, local_shape_index):
 	
 func begin():
 	visible = true
+	paused = false
 	$NavPlayer.paused = false
 	$NavPlayer/bumpTimer.start()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://68t31n43owot"]
+[gd_scene load_steps=15 format=3 uid="uid://68t31n43owot"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_180gd"]
 [ext_resource type="PackedScene" uid="uid://bqq27f5n26iho" path="res://Nav/Map/nav_map.tscn" id="1_k02dr"]
 [ext_resource type="PackedScene" uid="uid://b6fds5sexg0wh" path="res://Tilt/tilt_map.tscn" id="2_aqruc"]
 [ext_resource type="Texture2D" uid="uid://djq8ajfjtf7vm" path="res://test/death.png" id="4_a77ja"]
 [ext_resource type="PackedScene" uid="uid://bis56r5mv1i41" path="res://Click/click_map.tscn" id="4_bysr0"]
+[ext_resource type="Texture2D" uid="uid://cjs7leqg2ao3l" path="res://test/won.png" id="5_ho3j6"]
 [ext_resource type="Texture2D" uid="uid://dumeeoufumlgg" path="res://main/1.2_Tutorial_Tilt.png" id="6_jqyju"]
 [ext_resource type="Texture2D" uid="uid://db7a4mnkulyaq" path="res://main/1.3_Tutorial_Nav.png" id="7_lmymm"]
 [ext_resource type="Texture2D" uid="uid://c3ohs0s6xjix2" path="res://main/frames.png" id="7_vss7g"]
@@ -55,6 +56,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_dgpmj"]
 resource_name = "opening"
 length = 30.0
+step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -163,6 +165,18 @@ tracks/1/keys = {
 "method": &"_close"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j13m1"]
 _data = {
@@ -181,6 +195,9 @@ clickMapPos = Vector2(1280, 0)
 
 [node name="TESTWinSprite" type="Sprite2D" parent="."]
 visible = false
+z_index = 4
+position = Vector2(960, 540)
+texture = ExtResource("5_ho3j6")
 
 [node name="TESTDeathSprite" type="Sprite2D" parent="."]
 visible = false
@@ -198,6 +215,7 @@ position = Vector2(960, 540)
 texture = ExtResource("6_jqyju")
 
 [node name="navPrompt" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(344, 545)
 texture = ExtResource("7_lmymm")
 

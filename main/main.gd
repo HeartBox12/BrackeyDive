@@ -11,6 +11,9 @@ extends Node2D
 var dieCallable = Callable(self, "die") #I should rethink some of these names.
 var winCallable = Callable(self, "win")
 
+var won = false
+var lost = false
+
 func _ready():
 	Singleton.win.connect(winCallable)
 	Singleton.death.connect(dieCallable)
@@ -18,11 +21,17 @@ func _ready():
 	$AnimationPlayer.play("opening")
 
 func die(): #Start of death sequence
-	$AnimationPlayer.play("death")
+	if !won:
+		lost = true
+		$AnimationPlayer.play("death")
 
 func _close():
-	Singleton.FMODInstance.release()
-	get_tree().quit() #close the game.
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 0, false)
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 0, false)
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 0, false)
+	get_tree().change_scene_to_packed(load("res://Menu/menu.tscn")) #boot to menu
 
 func win():
-	$AnimationPlayer.play("win")
+	if !lost:
+		won = true
+		$AnimationPlayer.play("win")

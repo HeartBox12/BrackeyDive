@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://cg45ea456d1nu"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_rxyce"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_1h4x5"]
 data1 = 2601141689
 data2 = 3891565456
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_k3ect"]
-name = "?fûû"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_rxyce")
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_0nc0m"]
+name = "Click Music"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_1h4x5")
 maximum = 1.0
 flags = 4
 guid = "{f58164ef-6f68-46f1-962d-45646303e01b}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_k3ect")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_0nc0m")
 path = "parameter:/Click Music"
 guid = "{f58164ef-6f68-46f1-962d-45646303e01b}"
 name = "Click Music"

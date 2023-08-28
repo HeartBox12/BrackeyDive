@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://cysly7bdlkcdi"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_e328m"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_4pdct"]
 data1 = 4098977995
 data2 = 1040576322
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_enmq1"]
-name = "Tilt Music"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_e328m")
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_fjj3s"]
+name = "?fûû"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_4pdct")
 maximum = 1.0
 flags = 4
 guid = "{9db128de-2e5a-4440-9683-d67d5a58a03d}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_enmq1")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_fjj3s")
 path = "parameter:/Tilt Music"
 guid = "{9db128de-2e5a-4440-9683-d67d5a58a03d}"
 name = "Tilt Music"
