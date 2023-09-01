@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6fds5sexg0wh"]
+[gd_scene load_steps=8 format=3 uid="uid://b6fds5sexg0wh"]
 
 [ext_resource type="Script" path="res://Tilt/tilt_map.gd" id="1_qapj1"]
 [ext_resource type="Texture2D" uid="uid://cdahfiecu8pdq" path="res://Tilt/9._Drone_Itself.png" id="2_lcx7x"]
@@ -7,10 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cjo6oa0jhhslc" path="res://Tilt/4.2_Tilt_Bar.png" id="4_slq33"]
 [ext_resource type="Texture2D" uid="uid://bpn5bhac0px4h" path="res://Tilt/10.5_Clouds_1.png" id="5_ptjey"]
 [ext_resource type="Texture2D" uid="uid://xdadcrl7t8t" path="res://Tilt/10.6_Tilt_Map.png" id="7_2gjdm"]
-[ext_resource type="Texture2D" uid="uid://cjsvxuqn3r86w" path="res://Tilt/10.4_Clouds_2.png" id="7_tmxs8"]
-[ext_resource type="Texture2D" uid="uid://j88wftikp8uj" path="res://Tilt/10.3_Clouds_3.png" id="8_qqcgh"]
-[ext_resource type="Texture2D" uid="uid://dv6miiwgjeyh7" path="res://Tilt/10.2_Clouds_4.png" id="9_1fon4"]
-[ext_resource type="Texture2D" uid="uid://otp7ttl5auwa" path="res://Tilt/10.1_Clouds_5.png" id="10_45n6f"]
 
 [node name="tilt_map" type="Node2D"]
 script = ExtResource("1_qapj1")
@@ -55,41 +51,12 @@ sprite_frames = ExtResource("3_f1ao3")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(320, 0)
-motion_mirroring = Vector2(0, 1080)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+visible = false
 texture = ExtResource("5_ptjey")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(320, 0)
-motion_mirroring = Vector2(0, 1080)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource("7_tmxs8")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(320, 0)
-motion_mirroring = Vector2(0, 1080)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource("8_qqcgh")
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(320, 0)
-motion_mirroring = Vector2(0, 1080)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-texture = ExtResource("9_1fon4")
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(320, 0)
-motion_mirroring = Vector2(0, 1080)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-texture = ExtResource("10_45n6f")
-
-[node name="background" type="Sprite2D" parent="ParallaxBackground"]
+[node name="background" type="Sprite2D" parent="."]
 z_index = -5
 position = Vector2(320, 540)
 texture = ExtResource("7_2gjdm")

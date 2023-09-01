@@ -15,7 +15,7 @@ func _process(_delta):
 	#Determine if the player is outside safety zone
 	if (!overSpeed && $NavPlayer.velocity.length() > warnSpeed): #add warning
 		overSpeed = true
-		Audio.get_node("Left").volume_db = 0
+		FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 1, false)
 	
 	#If they are, do things.
 	if overSpeed:
@@ -27,17 +27,17 @@ func _process(_delta):
 		if ($NavPlayer.velocity.length() < warnSpeed):
 			overSpeed = false
 			if !inHaz:
-				Audio.get_node("Left").volume_db = -60
+				FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 0, false)
 
 
 func _on_warn_zone_entered(body, shape, index, local): #The player is nearing either edge.
 	inHaz = true
-	Audio.get_node("Left").volume_db = 0
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 1, false)
 
 func _on_warn_zone_exited(body, shape, index, local):
 	inHaz = false
 	if !overSpeed:
-		Audio.get_node("Left").volume_db = -60
+		FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 0, false)
 
 func _on_death_zone_entered(body, shape, index, local): #The player has left the map and died.
 	Singleton.death.emit()

@@ -186,7 +186,6 @@ _data = {
 }
 
 [node name="main" type="Node2D"]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_180gd")
 navFile = ExtResource("1_k02dr")
 tiltFile = ExtResource("2_aqruc")

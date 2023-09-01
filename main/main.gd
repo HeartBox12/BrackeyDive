@@ -26,9 +26,9 @@ func die(): #Start of death sequence
 		$AnimationPlayer.play("death")
 
 func _close():
-	Audio.get_node("Left").volume_db = -60
-	Audio.get_node("Middle").volume_db = -60
-	Audio.get_node("Right").volume_db = -60
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 0, false)
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 0, false)
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Nav Music", 0, false)
 	get_tree().change_scene_to_packed(load("res://Menu/menu.tscn")) #boot to menu
 
 func win():

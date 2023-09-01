@@ -15,13 +15,6 @@ var tiltMax = 1200 #The maximum amount of tilt
 
 var paused = false
 
-func _ready():
-	$ParallaxBackground/ParallaxLayer1.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer2.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer3.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer4.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer5.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-
 func _process(delta): #Determine and apply input to tiltVel
 	$ParallaxBackground.offset.y += parallax * delta
 	
@@ -50,7 +43,7 @@ func _process(delta): #Determine and apply input to tiltVel
 		$HazBar.visible = true
 		$HazTimer.start()
 		inHaz = true
-		Audio.get_node("Middle").volume_db = 0
+		FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 1, false)
 	
 	#If they are, do things.
 	if inHaz:
@@ -59,7 +52,7 @@ func _process(delta): #Determine and apply input to tiltVel
 		
 		#Eval if player is back in safety zone
 		if (abs(tilt) < tiltThresh):
-			Audio.get_node("Middle").volume_db = -60
+			FMODStudioModule.get_studio_system().set_parameter_by_name("Tilt Music", 0, false)
 			$HazBar.visible = false
 			inHaz = false
 			$HazTimer.stop()
