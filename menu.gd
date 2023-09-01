@@ -1,13 +1,10 @@
 extends Control
 
 @export var dest:PackedScene
-var bus:Bus
-
-func _ready():
-	bus = FMODStudioModule.get_studio_system().get_bus_by_id(FMODGuids.Busses.MASTER_BUS)
 
 func _on_start_pressed():
 	get_tree().change_scene_to_packed(dest)
 
 func _on_volume_changed(value):
-	bus.set_volume(value)
+	Singleton.volume_db = linear_to_db($volSlider.value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db($volSlider.value))

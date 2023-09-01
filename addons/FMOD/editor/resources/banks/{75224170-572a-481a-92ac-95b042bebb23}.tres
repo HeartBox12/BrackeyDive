@@ -1,8 +1,0 @@
-[gd_resource type="BankAsset" format=3 uid="uid://pi8uc63ovrgn"]
-
-[resource]
-file_path = "res://FMODBanks/Music.bank"
-modified_time = 1693115654
-path = "bank:/Music"
-guid = "{75224170-572a-481a-92ac-95b042bebb23}"
-name = "Music"
