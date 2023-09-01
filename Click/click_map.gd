@@ -43,9 +43,9 @@ func _resolve_complete(index):
 func eval_warn(): #Play or stop the warning track for the Click map. Includes decision structure.
 	for i in 3:
 		if windowArray[i] != null && windowArray[i].get_node("TimerComponent").inHaz == true:
-			FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 1, false)
+			Audio.get_node("Right").volume_db = 0
 			return #Found 1 in haz, exit function.
-	FMODStudioModule.get_studio_system().set_parameter_by_name("Click Music", 0, false)
+	Audio.get_node("Middle").volume_db = -60
 	#found none in haz.
 
 func begin():
