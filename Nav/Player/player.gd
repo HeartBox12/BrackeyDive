@@ -4,6 +4,7 @@ extends CharacterBody2D
 const THRUST = 2
 var input:Vector2 = Vector2(0, 0)
 @export var bumpSeverity:int
+@export var friction:float
 
 var paused = true #set to false when this minigame begins
 
@@ -25,11 +26,10 @@ func _physics_process(_delta):
 	if (Input.is_action_pressed("nav_right")):
 		input.x += 1
 	
-	velocity -= Vector2.UP * 0.5
+	velocity += ProjectSettings.get_setting("physics/2d/default_gravity_vector") * 0.5
 	velocity += input * THRUST
+	velocity *= friction
 	move_and_slide()
-	
-	#ADD SOME FORM OF CONFOUNDING MOVEMENT
 
 
 func _bump(): #called on a loop by a timer

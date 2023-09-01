@@ -28,8 +28,8 @@ size = Vector2(476, 41)
 
 [node name="Nav Map" type="Node2D"]
 script = ExtResource("1_hk541")
-speedLimit = 150.0
-warnSpeed = 75.0
+speedLimit = 75.0
+warnSpeed = 43.0
 
 [node name="background" type="ColorRect" parent="."]
 z_index = -4

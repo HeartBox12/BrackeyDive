@@ -8,7 +8,8 @@ size = Vector2(44, 30)
 
 [node name="NavPlayer" type="CharacterBody2D"]
 script = ExtResource("1_5x3rk")
-bumpSeverity = 50
+bumpSeverity = 30
+friction = 0.999
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kfrek")

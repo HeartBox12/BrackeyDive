@@ -101,6 +101,10 @@ click_scroll_down={
 
 2d_physics/layer_2="NavPlayer"
 
+[physics]
+
+2d/default_gravity=0.7
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

@@ -45,7 +45,7 @@ func eval_warn(): #Play or stop the warning track for the Click map. Includes de
 		if windowArray[i] != null && windowArray[i].get_node("TimerComponent").inHaz == true:
 			Audio.get_node("Right").volume_db = 0
 			return #Found 1 in haz, exit function.
-	Audio.get_node("Middle").volume_db = -60
+	Audio.get_node("Right").volume_db = -60
 	#found none in haz.
 
 func begin():
