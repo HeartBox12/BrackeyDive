@@ -38,8 +38,10 @@ Rock Bottom"
 
 [node name="volSlider" type="HSlider" parent="."]
 layout_mode = 1
-offset_right = 1920.0
-offset_bottom = 333.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1921.0
+offset_bottom = 334.0
 max_value = 1.0
 step = 0.001
 value = 1.0

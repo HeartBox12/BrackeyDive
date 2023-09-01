@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bis56r5mv1i41"]
 
 [ext_resource type="Script" path="res://Click/click_map.gd" id="1_vvwft"]
-[ext_resource type="PackedScene" uid="uid://ci6gd70h1oxed" path="res://Click/window.tscn" id="2_hnbts"]
+[ext_resource type="PackedScene" uid="uid://ci6gd70h1oxed" path="res://Click/button_prompt.tscn" id="2_tpqe0"]
 
 [node name="click_map" type="Node2D"]
 script = ExtResource("1_vvwft")
-windowScene = ExtResource("2_hnbts")
+windowScene = ExtResource("2_tpqe0")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 32.0

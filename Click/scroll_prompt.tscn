@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgrn6wo3gs0ft"]
+
+[ext_resource type="Script" path="res://Click/scroll_prompt.gd" id="1_wim7y"]
+[ext_resource type="PackedScene" uid="uid://c3o5vwndph3s5" path="res://Click/timer_component.tscn" id="2_n37n6"]
+
+[node name="window" type="TextureRect"]
+script = ExtResource("1_wim7y")
+
+[node name="TimerComponent" parent="." instance=ExtResource("2_n37n6")]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 89.0
+offset_right = 456.0
+offset_bottom = 545.0
+rotation = -0.523599
+
+[node name="cursor" type="Sprite2D" parent="."]
+
+[node name="goal" type="Sprite2D" parent="."]
+
+[node name="goalTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="goalTimer" to="." method="satisfied"]
