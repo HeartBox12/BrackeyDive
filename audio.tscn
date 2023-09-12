@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://copfxiurpjl4l"]
+[gd_scene load_steps=6 format=3 uid="uid://copfxiurpjl4l"]
 
 [ext_resource type="AudioStream" uid="uid://htm8eabmvja7" path="res://music/brackeydive_-_base.wav" id="1_o4vge"]
+[ext_resource type="Script" path="res://audio.gd" id="2_knxuc"]
 [ext_resource type="AudioStream" uid="uid://r612lowh3jhu" path="res://music/brackeydive_-_LEFT.wav" id="2_o27ii"]
 [ext_resource type="AudioStream" uid="uid://c6sy7wlpucruc" path="res://music/brackeydive_-_MIDDLE.wav" id="3_hec4g"]
 [ext_resource type="AudioStream" uid="uid://dwuks6dwgk3ec" path="res://music/brackeydive_-_RIGHT.wav" id="4_5mo54"]
@@ -9,6 +10,7 @@
 stream = ExtResource("1_o4vge")
 volume_db = -1.0
 autoplay = true
+script = ExtResource("2_knxuc")
 
 [node name="Left" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_o27ii")
@@ -24,3 +26,8 @@ autoplay = true
 stream = ExtResource("4_5mo54")
 volume_db = -60.0
 autoplay = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="finished" from="Left" to="." method="_on_left_finished"]
+[connection signal="finished" from="Middle" to="." method="_on_middle_finished"]
+[connection signal="finished" from="Right" to="." method="_on_right_finished"]

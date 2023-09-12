@@ -1,18 +1,18 @@
 extends CharacterBody2D
 
 
-const THRUST = 2
+const THRUST = 50
 var input:Vector2 = Vector2(0, 0)
 @export var bumpSeverity:int
-@export var friction:float
+@export var friction = .75
 
 var paused = true #set to false when this minigame begins
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 15
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if paused: return #Don't do anything until main says to
 	#Determine input
 	input = Vector2(0, 0)
@@ -26,9 +26,9 @@ func _physics_process(_delta):
 	if (Input.is_action_pressed("nav_right")):
 		input.x += 1
 	
-	velocity += ProjectSettings.get_setting("physics/2d/default_gravity_vector") * 0.5
-	velocity += input * THRUST
-	velocity *= friction
+	velocity += (Vector2(0, gravity) * delta)
+	velocity += input * THRUST * delta
+	velocity -= (velocity * delta * friction) #friction
 	move_and_slide()
 
 

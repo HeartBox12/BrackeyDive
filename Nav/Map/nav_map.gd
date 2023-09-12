@@ -10,21 +10,21 @@ var paused = true
 func _process(_delta):
 	if paused: return
 	
-	$needle.rotation_degrees = ($NavPlayer.velocity.length() / speedLimit) * 240
+	$needle.rotation_degrees = ($NavPlayer.velocity.y / speedLimit) * 240
 	
 	#Determine if the player is outside safety zone
-	if (!overSpeed && $NavPlayer.velocity.length() > warnSpeed): #add warning
+	if (!overSpeed && $NavPlayer.velocity.y > warnSpeed): #add warning
 		overSpeed = true
 		Audio.get_node("Left").volume_db = 0
 	
 	#If they are, do things.
 	if overSpeed:
 		#Measure and display level of hazard. Max frame is 62 and min is zero.
-		if ($NavPlayer.velocity.length() > speedLimit):
+		if ($NavPlayer.velocity.y > speedLimit):
 			Singleton.death.emit() #death`s
 		
 		#Eval if player is back in safety zone
-		if ($NavPlayer.velocity.length() < warnSpeed):
+		if ($NavPlayer.velocity.y < warnSpeed):
 			overSpeed = false
 			if !inHaz:
 				Audio.get_node("Left").volume_db = -60

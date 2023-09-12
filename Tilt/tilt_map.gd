@@ -7,7 +7,7 @@ var tiltVel:float = 0 #The angle's rate of motion
 @export var bumpMagnitude:int
 @export var playerTiltFactor:float #Inverse severity of player tilt
 @export var indTiltFactor:float #inverse severity of indicator tilt
-@export var parallax:int
+@export var fricMagnitude = 1.0
 
 var inHaz = false #hazard, not haz cheeseburger.
 var tiltThresh = 600 #The amount of tilt that is hazardous.
@@ -15,15 +15,7 @@ var tiltMax = 1200 #The maximum amount of tilt
 
 var paused = false
 
-func _ready():
-	$ParallaxBackground/ParallaxLayer1.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer2.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer3.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer4.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-	$ParallaxBackground/ParallaxLayer5.motion_offset = Vector2(randi_range(0, 1920 / 6), randi_range(0, 1080))
-
 func _process(delta): #Determine and apply input to tiltVel
-	$ParallaxBackground.offset.y += parallax * delta
 	
 	if paused: return
 	
@@ -31,6 +23,8 @@ func _process(delta): #Determine and apply input to tiltVel
 		tiltVel -= inputMagnitude * delta
 	if (Input.is_action_pressed("tilt_right")):
 		tiltVel += inputMagnitude * delta
+	
+	tiltVel -= (tiltVel * delta * fricMagnitude)
 	
 	tilt += tiltVel * delta
 	

@@ -1,38 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://68t31n43owot"]
+[gd_scene load_steps=21 format=3 uid="uid://68t31n43owot"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_180gd"]
 [ext_resource type="PackedScene" uid="uid://bqq27f5n26iho" path="res://Nav/Map/nav_map.tscn" id="1_k02dr"]
 [ext_resource type="PackedScene" uid="uid://b6fds5sexg0wh" path="res://Tilt/tilt_map.tscn" id="2_aqruc"]
-[ext_resource type="Texture2D" uid="uid://djq8ajfjtf7vm" path="res://test/death.png" id="4_a77ja"]
 [ext_resource type="PackedScene" uid="uid://bis56r5mv1i41" path="res://Click/click_map.tscn" id="4_bysr0"]
-[ext_resource type="Texture2D" uid="uid://cjs7leqg2ao3l" path="res://test/won.png" id="5_ho3j6"]
+[ext_resource type="Texture2D" uid="uid://bbqxk7aat05gl" path="res://main/Win.png" id="5_1fl8r"]
 [ext_resource type="Texture2D" uid="uid://dumeeoufumlgg" path="res://main/1.2_Tutorial_Tilt.png" id="6_jqyju"]
+[ext_resource type="Texture2D" uid="uid://dqm1bnr1cdx5o" path="res://main/Game_Over.png" id="6_u6p25"]
 [ext_resource type="Texture2D" uid="uid://db7a4mnkulyaq" path="res://main/1.3_Tutorial_Nav.png" id="7_lmymm"]
 [ext_resource type="Texture2D" uid="uid://c3ohs0s6xjix2" path="res://main/frames.png" id="7_vss7g"]
 [ext_resource type="Texture2D" uid="uid://d02kt3anq2hcs" path="res://main/1.1_Tutorial_Click.png" id="8_f5sck"]
+[ext_resource type="Texture2D" uid="uid://xdadcrl7t8t" path="res://Tilt/10.6_Tilt_Map.png" id="11_ld3qa"]
+[ext_resource type="Texture2D" uid="uid://bpn5bhac0px4h" path="res://Tilt/10.5_Clouds_1.png" id="12_ubd1n"]
+[ext_resource type="Texture2D" uid="uid://cjsvxuqn3r86w" path="res://Tilt/10.4_Clouds_2.png" id="13_5wc4t"]
+[ext_resource type="Texture2D" uid="uid://j88wftikp8uj" path="res://Tilt/10.3_Clouds_3.png" id="14_vhrp4"]
+[ext_resource type="Texture2D" uid="uid://dv6miiwgjeyh7" path="res://Tilt/10.2_Clouds_4.png" id="15_3j3lt"]
+[ext_resource type="Texture2D" uid="uid://otp7ttl5auwa" path="res://Tilt/10.1_Clouds_5.png" id="16_57d2u"]
 
 [sub_resource type="Animation" id="Animation_tth0o"]
 resource_name = "death"
 length = 5.0
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TESTDeathSprite:visible")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -40,17 +34,17 @@ tracks/1/keys = {
 "method": &"_close"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TESTDeathSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.5, 0.5, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dgpmj"]
@@ -135,29 +129,41 @@ tracks/5/keys = {
 "method": &"begin"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NavBlocker:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ClickBlocker:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_h54hr"]
 resource_name = "win"
 length = 5.0
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TESTWinSprite:visible")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -165,17 +171,17 @@ tracks/1/keys = {
 "method": &"_close"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TESTWinSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j13m1"]
@@ -193,17 +199,28 @@ tiltFile = ExtResource("2_aqruc")
 clickFile = ExtResource("4_bysr0")
 tiltMapPos = Vector2(640, 0)
 clickMapPos = Vector2(1280, 0)
+parallax = 1000
 
-[node name="TESTWinSprite" type="Sprite2D" parent="."]
-visible = false
-z_index = 4
+[node name="Frames" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(960, 540)
-texture = ExtResource("5_ho3j6")
+texture = ExtResource("7_vss7g")
 
 [node name="TESTDeathSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(960, 540)
-texture = ExtResource("4_a77ja")
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+z_index = 4
+position = Vector2(480, 270)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_u6p25")
+
+[node name="TESTWinSprite" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+z_index = 4
+position = Vector2(480, 270)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_1fl8r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -211,7 +228,6 @@ libraries = {
 }
 
 [node name="tiltPrompt" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(960, 540)
 texture = ExtResource("6_jqyju")
 
@@ -233,12 +249,78 @@ position = Vector2(25, 3)
 visible = false
 z_index = 4
 position = Vector2(645, 4)
+bumpMagnitude = 500
 
 [node name="click_map" parent="." instance=ExtResource("4_bysr0")]
 visible = false
 position = Vector2(1265, 3)
 
-[node name="Frames" type="Sprite2D" parent="."]
-z_index = 3
-position = Vector2(960, 540)
-texture = ExtResource("7_vss7g")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(320, 650)
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 320, 650)
+
+[node name="background" type="Sprite2D" parent="ParallaxBackground"]
+z_index = -5
+position = Vector2(326, -756)
+texture = ExtResource("11_ld3qa")
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 0)
+scale = Vector2(0.5, 0.5)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(0, 3750)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+texture = ExtResource("12_ubd1n")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 0)
+scale = Vector2(0.5, 0.5)
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(0, 3500)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("13_5wc4t")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 0)
+scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(0, 3250)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("14_vhrp4")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 0)
+scale = Vector2(0.5, 0.5)
+motion_scale = Vector2(1.25, 1.25)
+motion_mirroring = Vector2(0, 3000)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("15_3j3lt")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 0)
+scale = Vector2(0.5, 0.5)
+motion_scale = Vector2(1.5, 1.5)
+motion_mirroring = Vector2(0, 3500)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("16_57d2u")
+
+[node name="NavBlocker" type="ColorRect" parent="."]
+offset_left = 58.0
+offset_top = 38.0
+offset_right = 632.0
+offset_bottom = 1052.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ClickBlocker" type="ColorRect" parent="."]
+offset_left = 1298.0
+offset_top = 36.0
+offset_right = 1872.0
+offset_bottom = 1050.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
