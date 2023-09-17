@@ -51,3 +51,4 @@ func eval_warn(): #Play or stop the warning track for the Click map. Includes de
 func begin():
 	$spawnTime.start()
 	visible = true
+	_on_spawn_timeout() #Spawn the first button
