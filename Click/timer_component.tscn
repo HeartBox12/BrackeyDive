@@ -13,6 +13,7 @@ texture_under = ExtResource("1_4uw3j")
 texture_over = ExtResource("2_4aohf")
 texture_progress = ExtResource("3_wni2i")
 script = ExtResource("2_rp31j")
+shakeSeverity = 5.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0

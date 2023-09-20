@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://68t31n43owot"]
+[gd_scene load_steps=22 format=3 uid="uid://68t31n43owot"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_180gd"]
 [ext_resource type="PackedScene" uid="uid://bqq27f5n26iho" path="res://Nav/Map/nav_map.tscn" id="1_k02dr"]
@@ -16,6 +16,88 @@
 [ext_resource type="Texture2D" uid="uid://j88wftikp8uj" path="res://Tilt/10.3_Clouds_3.png" id="14_vhrp4"]
 [ext_resource type="Texture2D" uid="uid://dv6miiwgjeyh7" path="res://Tilt/10.2_Clouds_4.png" id="15_3j3lt"]
 [ext_resource type="Texture2D" uid="uid://otp7ttl5auwa" path="res://Tilt/10.1_Clouds_5.png" id="16_57d2u"]
+
+[sub_resource type="Animation" id="Animation_n83ff"]
+resource_name = "AltOpen"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tiltPrompt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 5, 1),
+"update": 0,
+"values": [Vector2(962, 540), Vector2(962, 540), Vector2(962, 1620)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("navPrompt:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 12, 13),
+"transitions": PackedFloat32Array(1, 5, 1),
+"update": 0,
+"values": [Vector2(344, 545), Vector2(344, 545), Vector2(344, 1620)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("clickPrompt:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 21, 22),
+"transitions": PackedFloat32Array(1, 5, 1),
+"update": 0,
+"values": [Vector2(1585, 540), Vector2(1585, 540), Vector2(1585, 1620)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("tilt_map")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"begin"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("nav_map")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"begin"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("click_map")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(21),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"begin"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_tth0o"]
 resource_name = "death"
@@ -49,7 +131,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dgpmj"]
 resource_name = "opening"
-length = 30.0
+length = 21.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -186,6 +268,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j13m1"]
 _data = {
+"AltOpen": SubResource("Animation_n83ff"),
 "death": SubResource("Animation_tth0o"),
 "opening": SubResource("Animation_dgpmj"),
 "win": SubResource("Animation_h54hr")
@@ -228,31 +311,28 @@ libraries = {
 }
 
 [node name="tiltPrompt" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
+position = Vector2(962, 1620)
 texture = ExtResource("6_jqyju")
 
 [node name="navPrompt" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(344, 545)
+position = Vector2(344, 1620)
 texture = ExtResource("7_lmymm")
 
 [node name="clickPrompt" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1585, 540)
+position = Vector2(1585, 1620)
 texture = ExtResource("8_f5sck")
 
 [node name="nav_map" parent="." instance=ExtResource("1_k02dr")]
-visible = false
+z_index = -1
 position = Vector2(25, 3)
 
 [node name="tilt_map" parent="." instance=ExtResource("2_aqruc")]
-visible = false
-z_index = 4
+z_index = -1
 position = Vector2(645, 4)
 bumpMagnitude = 500
 
 [node name="click_map" parent="." instance=ExtResource("4_bysr0")]
-visible = false
+z_index = -1
 position = Vector2(1265, 3)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -310,6 +390,7 @@ motion_mirroring = Vector2(0, 3500)
 texture = ExtResource("16_57d2u")
 
 [node name="NavBlocker" type="ColorRect" parent="."]
+visible = false
 offset_left = 58.0
 offset_top = 38.0
 offset_right = 632.0
@@ -318,6 +399,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="ClickBlocker" type="ColorRect" parent="."]
+visible = false
 offset_left = 1298.0
 offset_top = 36.0
 offset_right = 1872.0

@@ -8,12 +8,18 @@ var tiltVel:float = 0 #The angle's rate of motion
 @export var playerTiltFactor:float #Inverse severity of player tilt
 @export var indTiltFactor:float #inverse severity of indicator tilt
 @export var fricMagnitude = 1.0
+@export var shakeSeverity:int
 
 var inHaz = false #hazard, not haz cheeseburger.
 var tiltThresh = 600 #The amount of tilt that is hazardous.
 var tiltMax = 1200 #The maximum amount of tilt
 
 var paused = false
+
+var basePos:Vector2 #OF THE PROBE
+
+func _ready():
+	basePos = $TiltPlayer.position
 
 func _process(delta): #Determine and apply input to tiltVel
 	
@@ -50,13 +56,14 @@ func _process(delta): #Determine and apply input to tiltVel
 	if inHaz:
 		#Measure and display level of hazard. Max frame is 8 and min is zero.
 		$HazBar.frame = int(($HazTimer.wait_time - $HazTimer.time_left) * 8 / 3) #CHANGE DIVISOR IF WAIT TIME IS CHANGED
-		
+		$TiltPlayer.position = basePos + (shakeSeverity * Vector2(1, 0).rotated(randf_range(0, 2 * PI))) #shake
 		#Eval if player is back in safety zone
 		if (abs(tilt) < tiltThresh):
 			Audio.get_node("Middle").volume_db = -60
 			$HazBar.visible = false
 			inHaz = false
 			$HazTimer.stop()
+			$TiltPlayer.position = basePos #reset position
 
 func _timed_bump(): #bump the tilt
 	if (randi_range(0, 1) == 1):

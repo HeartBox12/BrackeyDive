@@ -20,7 +20,7 @@ func _ready():
 	Singleton.win.connect(winCallable)
 	Singleton.death.connect(dieCallable)
 	
-	$AnimationPlayer.play("opening")
+	$AnimationPlayer.play("AltOpen")
 	
 	$ParallaxBackground/ParallaxLayer1.motion_offset = Vector2(randi_range(-320, 320), randi_range(0, 2160))
 	$ParallaxBackground/ParallaxLayer2.motion_offset = Vector2(randi_range(-320, 320), randi_range(0, 2160))

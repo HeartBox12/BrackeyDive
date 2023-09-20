@@ -7,10 +7,19 @@ var overSpeed = false
 
 var paused = true
 
+@export var shakeSeverity:int
+@export var speedometerShakeSeverity:int
+var basePos
+var speedometerBasePos
+
+func _ready():
+	basePos = position
+	speedometerBasePos = $speedometer.position
+
 func _process(_delta):
 	if paused: return
 	
-	$needle.rotation_degrees = ($NavPlayer.velocity.y / speedLimit) * 240
+	$speedometer/needle.rotation_degrees = ($NavPlayer.velocity.y / speedLimit) * 240
 	
 	#Determine if the player is outside safety zone
 	if (!overSpeed && $NavPlayer.velocity.y > warnSpeed): #add warning
@@ -19,6 +28,7 @@ func _process(_delta):
 	
 	#If they are, do things.
 	if overSpeed:
+		$speedometer.position = speedometerBasePos + (speedometerShakeSeverity * Vector2(1, 0).rotated(randf_range(0, 2 * PI))) #shake
 		#Measure and display level of hazard. Max frame is 62 and min is zero.
 		if ($NavPlayer.velocity.y > speedLimit):
 			Singleton.death.emit() #death`s
@@ -26,8 +36,12 @@ func _process(_delta):
 		#Eval if player is back in safety zone
 		if ($NavPlayer.velocity.y < warnSpeed):
 			overSpeed = false
+			$speedometer.position = speedometerBasePos
 			if !inHaz:
 				Audio.get_node("Left").volume_db = -60
+	
+	if inHaz:
+		position = basePos + (shakeSeverity * Vector2(1, 0).rotated(randf_range(0, 2 * PI))) #shake
 
 
 func _on_warn_zone_entered(body, shape, index, local): #The player is nearing either edge.
@@ -36,6 +50,7 @@ func _on_warn_zone_entered(body, shape, index, local): #The player is nearing ei
 
 func _on_warn_zone_exited(body, shape, index, local):
 	inHaz = false
+	position = basePos
 	if !overSpeed:
 		Audio.get_node("Left").volume_db = -60
 

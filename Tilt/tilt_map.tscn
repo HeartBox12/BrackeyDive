@@ -12,6 +12,7 @@ inputMagnitude = 2000
 bumpMagnitude = 50
 playerTiltFactor = 2.0
 indTiltFactor = 10.0
+shakeSeverity = 10
 
 [node name="TiltPlayer" type="Sprite2D" parent="."]
 position = Vector2(320, 540)
